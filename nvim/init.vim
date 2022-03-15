@@ -45,6 +45,11 @@ Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
 
 call plug#end()
 
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
 syntax enable
 colorscheme dracula
 
